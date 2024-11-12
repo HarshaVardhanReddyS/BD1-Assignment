@@ -1,9 +1,11 @@
 const express = require('express');
 const { resolve } = require('path');
+const cors = require('cors')
 
 const app = express();
 const port = 3010;
 
+app.use(cors())
 app.use(express.static('static'));
 
 app.get('/', (req, res) => {
@@ -14,7 +16,7 @@ app.get('/cart-total', (req, res) => {
   const newItemPrice = parseFloat(req.query.newItemPrice);
   const cartTotal = parseFloat(req.query.cartTotal);
   const total = parseFloat(newItemPrice + cartTotal);
-  console.log(`${total}`);
+  console.log(typeof `${total}`);
   res.send(`${total}`);
 });
 
